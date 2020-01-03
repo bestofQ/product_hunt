@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # 注册导入的库
 from django.contrib.auth.models import User
 
@@ -20,7 +20,11 @@ def signup(request):
 			User.objects.get(username=user)
 			return render(request, 'signup.html', {'用户名错误': '该用户名已存在'})
 		except User.DoesNotExist:
-			pass
+			if password == password1:
+				User.objects.create(username=user, password=password)
+				return redirect('主页')
+			else:
+				return render(request, 'signup.html', {'密码错误': '两次输入的密码不一致'})
 
 
 
