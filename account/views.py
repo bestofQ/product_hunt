@@ -21,7 +21,7 @@ def signup(request):
 			return render(request, 'signup.html', {'用户名错误': '该用户名已存在'})
 		except User.DoesNotExist:
 			if password == password1:
-				User.objects.create(username=user, password=password)
+				User.objects.create_user(username=user, password=password)
 				return redirect('主页')
 			else:
 				return render(request, 'signup.html', {'密码错误': '两次输入的密码不一致'})
