@@ -35,8 +35,11 @@
 	    <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
         <li class="nav-item">
+          <a class="nav-link" href="{% url '发布页面' %}">发布</a>          
+        </li>
+        <li class="nav-item">
            <!-- <a class="nav-link" href="{% url '退出页面' %}">Login in</a> -->
-        <a class="nav-link" href="Javascript:{document.getElementById('退出').submit()}">Log Out</a>        
+        <a class="nav-link" href="Javascript:{document.getElementById('退出').submit()}">退出</a>        
           <form method="POST" action="{% url '退出页面' %}" id='退出'>
             {% csrf_token %}
             <input type="hidden" >
@@ -44,10 +47,10 @@
         </li>
       {% else %}
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url '登录页面' %}">Login in</a>
+	        <a class="nav-link" href="{% url '登录页面' %}">登录</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link " href="{% url '注册页面' %}" >Sign up</a>
+	        <a class="nav-link " href="{% url '注册页面' %}" >注册</a>
 	      </li>
       {% endif %}
 
