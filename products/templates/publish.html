@@ -3,31 +3,18 @@
 {% block content %}
 <h2 align="center">产品发布界面</h2><br>
 <!-- enctype 传输的编码格式设定-->
-<form method="POST" action="{% url '发布页面' %}" align='center' enctype="multipart/from-data">
-	<!-- 防止站点攻击 -->
-	{% csrf_token %}
-	APP名称：<br>
-	<input type="text" name="APP名称"><br>
-	<br>
 
-	介绍：<br>
-	<textarea cols=100 rows=10 name="介绍"></textarea><br>
-	<br>
+<form action="{% url '发布页面' %}" method="post" enctype="multipart/form-data" align='center'>
+    {% csrf_token %}
+    <input type="text" name="app_title" placeholder="app名称"><br>
+    <textarea cols=100 rows=10 name="app_intro" >在这里写APP介绍</textarea><br>
+    <input type="text" name="app_link" value="http://"><br>
 
-	APP链接：<br>
-	<input type="text" name="APP链接"><br>
-	<br>
-	
-	APP图标(缩略图)：
-	<input type="file" name="APP图标"><br>
-	<br>
 
-	           大图：
-	<input type="file" name="大图"><br>
-	<br>
+    <input type="file" name="app_icon"><br>
+    <input type="file" name="app_image_icon"><br>
+    <br>
+    {{错误}}
+    <input type="submit" value="提交">
+</form>{% endblock content %}
 
-	<input type="submit" value="发     布" class="btn btn-primary">
-</form>
-{% endblock content %}
-
-{# <h1>这是产品列表页面</h1> #}
