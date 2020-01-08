@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="container">
-{% for product in products.all %}
 	<div class="row">
 		<div class="card" style="width: 18rem;">
 			<img src="{{ prodcuct.icon.url }}" alt="Card image cap">
@@ -12,10 +11,7 @@
 			<h3><a href="prodcucts/{{prodcuct.id}}">{{ prodcuct.title }}</a></h3>
 			{{ prodcuct.intro }}				
 		</div>
-			
 	</div>
-
-{% endfor %}
 </div>
 
 

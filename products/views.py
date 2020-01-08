@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 
 # 授权
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,13 @@ from django.utils import timezone
 # Create your views here.
 
 def product_list(request):
-	return render(request, 'product_list.html')
+	products = Product.objects
+	return render(request, 'product_list.html', {"products": products})
+
+def detail(request, product_id):
+	product = get_object_or_404(Product, pk=product_id)
+	return render(request, 'detail.html', {"product": product})
+
 
 # 授权  装饰器
 @login_required
@@ -46,8 +52,6 @@ def publish(request):
 		except Exception as err:
 			return render(request, 'publish.html', {'错误':err})
 			
-
-
 		# try:
 		# 	icon  = request.FILES.get('APP_icon')
 		# 	image = request.FILES.get('app_image')
@@ -73,9 +77,3 @@ def publish(request):
 
 		# except Exception as err:
 		# 	return render(request, 'publish.html', {'错误':err})
-
-		
-
-
-
-
